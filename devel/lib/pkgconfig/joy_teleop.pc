@@ -1,0 +1,8 @@
+prefix=/home/dank-engine/ELEC4010K_ws/devel
+
+Name: joy_teleop
+Description: Description of joy_teleop
+Version: 0.2.6
+Cflags: 
+Libs: -L/home/dank-engine/ELEC4010K_ws/devel/lib 
+Requires: actionlib

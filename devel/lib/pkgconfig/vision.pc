@@ -1,0 +1,8 @@
+prefix=/home/dank-engine/ELEC4010K_ws/devel
+
+Name: vision
+Description: Description of vision
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/dank-engine/ELEC4010K_ws/devel/lib 
+Requires: 

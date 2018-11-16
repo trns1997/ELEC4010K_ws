@@ -1,0 +1,8 @@
+prefix=/home/dank-engine/ELEC4010K_ws/devel
+
+Name: ball_tracker
+Description: Description of ball_tracker
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/dank-engine/ELEC4010K_ws/devel/lib 
+Requires: 
