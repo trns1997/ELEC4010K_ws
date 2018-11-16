@@ -68,27 +68,26 @@ install/fast: preinstall/fast
 	/usr/bin/cmake -P cmake_install.cmake
 .PHONY : install/fast
 
-# Special rule for the target rebuild_cache
-rebuild_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : rebuild_cache
+# Special rule for the target list_install_components
+list_install_components:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
+.PHONY : list_install_components
 
-# Special rule for the target rebuild_cache
-rebuild_cache/fast: rebuild_cache
+# Special rule for the target list_install_components
+list_install_components/fast: list_install_components
 
-.PHONY : rebuild_cache/fast
+.PHONY : list_install_components/fast
 
-# Special rule for the target edit_cache
-edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
-.PHONY : edit_cache
+# Special rule for the target install/strip
+install/strip: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip
 
-# Special rule for the target edit_cache
-edit_cache/fast: edit_cache
+# Special rule for the target install/strip
+install/strip/fast: install/strip
 
-.PHONY : edit_cache/fast
+.PHONY : install/strip/fast
 
 # Special rule for the target install/local
 install/local: preinstall
@@ -112,26 +111,27 @@ test/fast: test
 
 .PHONY : test/fast
 
-# Special rule for the target list_install_components
-list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
-.PHONY : list_install_components
+# Special rule for the target edit_cache
+edit_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
+	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+.PHONY : edit_cache
 
-# Special rule for the target list_install_components
-list_install_components/fast: list_install_components
+# Special rule for the target edit_cache
+edit_cache/fast: edit_cache
 
-.PHONY : list_install_components/fast
+.PHONY : edit_cache/fast
 
-# Special rule for the target install/strip
-install/strip: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
-	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip
+# Special rule for the target rebuild_cache
+rebuild_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
+	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : rebuild_cache
 
-# Special rule for the target install/strip
-install/strip/fast: install/strip
+# Special rule for the target rebuild_cache
+rebuild_cache/fast: rebuild_cache
 
-.PHONY : install/strip/fast
+.PHONY : rebuild_cache/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -166,79 +166,34 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-vrep_ros_interface/CMakeFiles/map_msgs_generate_messages_lisp.dir/rule:
-	cd /home/dank-engine/ELEC4010K_ws/build && $(MAKE) -f CMakeFiles/Makefile2 vrep_ros_interface/CMakeFiles/map_msgs_generate_messages_lisp.dir/rule
-.PHONY : vrep_ros_interface/CMakeFiles/map_msgs_generate_messages_lisp.dir/rule
+vrep_ros_interface/CMakeFiles/pcl_msgs_generate_messages_py.dir/rule:
+	cd /home/dank-engine/ELEC4010K_ws/build && $(MAKE) -f CMakeFiles/Makefile2 vrep_ros_interface/CMakeFiles/pcl_msgs_generate_messages_py.dir/rule
+.PHONY : vrep_ros_interface/CMakeFiles/pcl_msgs_generate_messages_py.dir/rule
 
 # Convenience name for target.
-map_msgs_generate_messages_lisp: vrep_ros_interface/CMakeFiles/map_msgs_generate_messages_lisp.dir/rule
+pcl_msgs_generate_messages_py: vrep_ros_interface/CMakeFiles/pcl_msgs_generate_messages_py.dir/rule
 
-.PHONY : map_msgs_generate_messages_lisp
+.PHONY : pcl_msgs_generate_messages_py
 
 # fast build rule for target.
-map_msgs_generate_messages_lisp/fast:
-	cd /home/dank-engine/ELEC4010K_ws/build && $(MAKE) -f vrep_ros_interface/CMakeFiles/map_msgs_generate_messages_lisp.dir/build.make vrep_ros_interface/CMakeFiles/map_msgs_generate_messages_lisp.dir/build
-.PHONY : map_msgs_generate_messages_lisp/fast
+pcl_msgs_generate_messages_py/fast:
+	cd /home/dank-engine/ELEC4010K_ws/build && $(MAKE) -f vrep_ros_interface/CMakeFiles/pcl_msgs_generate_messages_py.dir/build.make vrep_ros_interface/CMakeFiles/pcl_msgs_generate_messages_py.dir/build
+.PHONY : pcl_msgs_generate_messages_py/fast
 
 # Convenience name for target.
-vrep_ros_interface/CMakeFiles/map_msgs_generate_messages_eus.dir/rule:
-	cd /home/dank-engine/ELEC4010K_ws/build && $(MAKE) -f CMakeFiles/Makefile2 vrep_ros_interface/CMakeFiles/map_msgs_generate_messages_eus.dir/rule
-.PHONY : vrep_ros_interface/CMakeFiles/map_msgs_generate_messages_eus.dir/rule
+vrep_ros_interface/CMakeFiles/pcl_msgs_generate_messages_lisp.dir/rule:
+	cd /home/dank-engine/ELEC4010K_ws/build && $(MAKE) -f CMakeFiles/Makefile2 vrep_ros_interface/CMakeFiles/pcl_msgs_generate_messages_lisp.dir/rule
+.PHONY : vrep_ros_interface/CMakeFiles/pcl_msgs_generate_messages_lisp.dir/rule
 
 # Convenience name for target.
-map_msgs_generate_messages_eus: vrep_ros_interface/CMakeFiles/map_msgs_generate_messages_eus.dir/rule
+pcl_msgs_generate_messages_lisp: vrep_ros_interface/CMakeFiles/pcl_msgs_generate_messages_lisp.dir/rule
 
-.PHONY : map_msgs_generate_messages_eus
+.PHONY : pcl_msgs_generate_messages_lisp
 
 # fast build rule for target.
-map_msgs_generate_messages_eus/fast:
-	cd /home/dank-engine/ELEC4010K_ws/build && $(MAKE) -f vrep_ros_interface/CMakeFiles/map_msgs_generate_messages_eus.dir/build.make vrep_ros_interface/CMakeFiles/map_msgs_generate_messages_eus.dir/build
-.PHONY : map_msgs_generate_messages_eus/fast
-
-# Convenience name for target.
-vrep_ros_interface/CMakeFiles/map_msgs_generate_messages_cpp.dir/rule:
-	cd /home/dank-engine/ELEC4010K_ws/build && $(MAKE) -f CMakeFiles/Makefile2 vrep_ros_interface/CMakeFiles/map_msgs_generate_messages_cpp.dir/rule
-.PHONY : vrep_ros_interface/CMakeFiles/map_msgs_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-map_msgs_generate_messages_cpp: vrep_ros_interface/CMakeFiles/map_msgs_generate_messages_cpp.dir/rule
-
-.PHONY : map_msgs_generate_messages_cpp
-
-# fast build rule for target.
-map_msgs_generate_messages_cpp/fast:
-	cd /home/dank-engine/ELEC4010K_ws/build && $(MAKE) -f vrep_ros_interface/CMakeFiles/map_msgs_generate_messages_cpp.dir/build.make vrep_ros_interface/CMakeFiles/map_msgs_generate_messages_cpp.dir/build
-.PHONY : map_msgs_generate_messages_cpp/fast
-
-# Convenience name for target.
-vrep_ros_interface/CMakeFiles/pcl_msgs_generate_messages_nodejs.dir/rule:
-	cd /home/dank-engine/ELEC4010K_ws/build && $(MAKE) -f CMakeFiles/Makefile2 vrep_ros_interface/CMakeFiles/pcl_msgs_generate_messages_nodejs.dir/rule
-.PHONY : vrep_ros_interface/CMakeFiles/pcl_msgs_generate_messages_nodejs.dir/rule
-
-# Convenience name for target.
-pcl_msgs_generate_messages_nodejs: vrep_ros_interface/CMakeFiles/pcl_msgs_generate_messages_nodejs.dir/rule
-
-.PHONY : pcl_msgs_generate_messages_nodejs
-
-# fast build rule for target.
-pcl_msgs_generate_messages_nodejs/fast:
-	cd /home/dank-engine/ELEC4010K_ws/build && $(MAKE) -f vrep_ros_interface/CMakeFiles/pcl_msgs_generate_messages_nodejs.dir/build.make vrep_ros_interface/CMakeFiles/pcl_msgs_generate_messages_nodejs.dir/build
-.PHONY : pcl_msgs_generate_messages_nodejs/fast
-
-# Convenience name for target.
-vrep_ros_interface/CMakeFiles/diagnostic_msgs_generate_messages_py.dir/rule:
-	cd /home/dank-engine/ELEC4010K_ws/build && $(MAKE) -f CMakeFiles/Makefile2 vrep_ros_interface/CMakeFiles/diagnostic_msgs_generate_messages_py.dir/rule
-.PHONY : vrep_ros_interface/CMakeFiles/diagnostic_msgs_generate_messages_py.dir/rule
-
-# Convenience name for target.
-diagnostic_msgs_generate_messages_py: vrep_ros_interface/CMakeFiles/diagnostic_msgs_generate_messages_py.dir/rule
-
-.PHONY : diagnostic_msgs_generate_messages_py
-
-# fast build rule for target.
-diagnostic_msgs_generate_messages_py/fast:
-	cd /home/dank-engine/ELEC4010K_ws/build && $(MAKE) -f vrep_ros_interface/CMakeFiles/diagnostic_msgs_generate_messages_py.dir/build.make vrep_ros_interface/CMakeFiles/diagnostic_msgs_generate_messages_py.dir/build
-.PHONY : diagnostic_msgs_generate_messages_py/fast
+pcl_msgs_generate_messages_lisp/fast:
+	cd /home/dank-engine/ELEC4010K_ws/build && $(MAKE) -f vrep_ros_interface/CMakeFiles/pcl_msgs_generate_messages_lisp.dir/build.make vrep_ros_interface/CMakeFiles/pcl_msgs_generate_messages_lisp.dir/build
+.PHONY : pcl_msgs_generate_messages_lisp/fast
 
 # Convenience name for target.
 vrep_ros_interface/CMakeFiles/shape_msgs_generate_messages_cpp.dir/rule:
@@ -256,34 +211,19 @@ shape_msgs_generate_messages_cpp/fast:
 .PHONY : shape_msgs_generate_messages_cpp/fast
 
 # Convenience name for target.
-vrep_ros_interface/CMakeFiles/map_msgs_generate_messages_py.dir/rule:
-	cd /home/dank-engine/ELEC4010K_ws/build && $(MAKE) -f CMakeFiles/Makefile2 vrep_ros_interface/CMakeFiles/map_msgs_generate_messages_py.dir/rule
-.PHONY : vrep_ros_interface/CMakeFiles/map_msgs_generate_messages_py.dir/rule
+vrep_ros_interface/CMakeFiles/pcl_msgs_generate_messages_nodejs.dir/rule:
+	cd /home/dank-engine/ELEC4010K_ws/build && $(MAKE) -f CMakeFiles/Makefile2 vrep_ros_interface/CMakeFiles/pcl_msgs_generate_messages_nodejs.dir/rule
+.PHONY : vrep_ros_interface/CMakeFiles/pcl_msgs_generate_messages_nodejs.dir/rule
 
 # Convenience name for target.
-map_msgs_generate_messages_py: vrep_ros_interface/CMakeFiles/map_msgs_generate_messages_py.dir/rule
+pcl_msgs_generate_messages_nodejs: vrep_ros_interface/CMakeFiles/pcl_msgs_generate_messages_nodejs.dir/rule
 
-.PHONY : map_msgs_generate_messages_py
+.PHONY : pcl_msgs_generate_messages_nodejs
 
 # fast build rule for target.
-map_msgs_generate_messages_py/fast:
-	cd /home/dank-engine/ELEC4010K_ws/build && $(MAKE) -f vrep_ros_interface/CMakeFiles/map_msgs_generate_messages_py.dir/build.make vrep_ros_interface/CMakeFiles/map_msgs_generate_messages_py.dir/build
-.PHONY : map_msgs_generate_messages_py/fast
-
-# Convenience name for target.
-vrep_ros_interface/CMakeFiles/pcl_msgs_generate_messages_py.dir/rule:
-	cd /home/dank-engine/ELEC4010K_ws/build && $(MAKE) -f CMakeFiles/Makefile2 vrep_ros_interface/CMakeFiles/pcl_msgs_generate_messages_py.dir/rule
-.PHONY : vrep_ros_interface/CMakeFiles/pcl_msgs_generate_messages_py.dir/rule
-
-# Convenience name for target.
-pcl_msgs_generate_messages_py: vrep_ros_interface/CMakeFiles/pcl_msgs_generate_messages_py.dir/rule
-
-.PHONY : pcl_msgs_generate_messages_py
-
-# fast build rule for target.
-pcl_msgs_generate_messages_py/fast:
-	cd /home/dank-engine/ELEC4010K_ws/build && $(MAKE) -f vrep_ros_interface/CMakeFiles/pcl_msgs_generate_messages_py.dir/build.make vrep_ros_interface/CMakeFiles/pcl_msgs_generate_messages_py.dir/build
-.PHONY : pcl_msgs_generate_messages_py/fast
+pcl_msgs_generate_messages_nodejs/fast:
+	cd /home/dank-engine/ELEC4010K_ws/build && $(MAKE) -f vrep_ros_interface/CMakeFiles/pcl_msgs_generate_messages_nodejs.dir/build.make vrep_ros_interface/CMakeFiles/pcl_msgs_generate_messages_nodejs.dir/build
+.PHONY : pcl_msgs_generate_messages_nodejs/fast
 
 # Convenience name for target.
 vrep_ros_interface/CMakeFiles/diagnostic_msgs_generate_messages_cpp.dir/rule:
@@ -314,6 +254,21 @@ diagnostic_msgs_generate_messages_eus: vrep_ros_interface/CMakeFiles/diagnostic_
 diagnostic_msgs_generate_messages_eus/fast:
 	cd /home/dank-engine/ELEC4010K_ws/build && $(MAKE) -f vrep_ros_interface/CMakeFiles/diagnostic_msgs_generate_messages_eus.dir/build.make vrep_ros_interface/CMakeFiles/diagnostic_msgs_generate_messages_eus.dir/build
 .PHONY : diagnostic_msgs_generate_messages_eus/fast
+
+# Convenience name for target.
+vrep_ros_interface/CMakeFiles/pcl_msgs_generate_messages_eus.dir/rule:
+	cd /home/dank-engine/ELEC4010K_ws/build && $(MAKE) -f CMakeFiles/Makefile2 vrep_ros_interface/CMakeFiles/pcl_msgs_generate_messages_eus.dir/rule
+.PHONY : vrep_ros_interface/CMakeFiles/pcl_msgs_generate_messages_eus.dir/rule
+
+# Convenience name for target.
+pcl_msgs_generate_messages_eus: vrep_ros_interface/CMakeFiles/pcl_msgs_generate_messages_eus.dir/rule
+
+.PHONY : pcl_msgs_generate_messages_eus
+
+# fast build rule for target.
+pcl_msgs_generate_messages_eus/fast:
+	cd /home/dank-engine/ELEC4010K_ws/build && $(MAKE) -f vrep_ros_interface/CMakeFiles/pcl_msgs_generate_messages_eus.dir/build.make vrep_ros_interface/CMakeFiles/pcl_msgs_generate_messages_eus.dir/build
+.PHONY : pcl_msgs_generate_messages_eus/fast
 
 # Convenience name for target.
 vrep_ros_interface/CMakeFiles/diagnostic_msgs_generate_messages_lisp.dir/rule:
@@ -361,36 +316,6 @@ v_repExtRosInterface/fast:
 .PHONY : v_repExtRosInterface/fast
 
 # Convenience name for target.
-vrep_ros_interface/CMakeFiles/pcl_msgs_generate_messages_eus.dir/rule:
-	cd /home/dank-engine/ELEC4010K_ws/build && $(MAKE) -f CMakeFiles/Makefile2 vrep_ros_interface/CMakeFiles/pcl_msgs_generate_messages_eus.dir/rule
-.PHONY : vrep_ros_interface/CMakeFiles/pcl_msgs_generate_messages_eus.dir/rule
-
-# Convenience name for target.
-pcl_msgs_generate_messages_eus: vrep_ros_interface/CMakeFiles/pcl_msgs_generate_messages_eus.dir/rule
-
-.PHONY : pcl_msgs_generate_messages_eus
-
-# fast build rule for target.
-pcl_msgs_generate_messages_eus/fast:
-	cd /home/dank-engine/ELEC4010K_ws/build && $(MAKE) -f vrep_ros_interface/CMakeFiles/pcl_msgs_generate_messages_eus.dir/build.make vrep_ros_interface/CMakeFiles/pcl_msgs_generate_messages_eus.dir/build
-.PHONY : pcl_msgs_generate_messages_eus/fast
-
-# Convenience name for target.
-vrep_ros_interface/CMakeFiles/pcl_msgs_generate_messages_lisp.dir/rule:
-	cd /home/dank-engine/ELEC4010K_ws/build && $(MAKE) -f CMakeFiles/Makefile2 vrep_ros_interface/CMakeFiles/pcl_msgs_generate_messages_lisp.dir/rule
-.PHONY : vrep_ros_interface/CMakeFiles/pcl_msgs_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-pcl_msgs_generate_messages_lisp: vrep_ros_interface/CMakeFiles/pcl_msgs_generate_messages_lisp.dir/rule
-
-.PHONY : pcl_msgs_generate_messages_lisp
-
-# fast build rule for target.
-pcl_msgs_generate_messages_lisp/fast:
-	cd /home/dank-engine/ELEC4010K_ws/build && $(MAKE) -f vrep_ros_interface/CMakeFiles/pcl_msgs_generate_messages_lisp.dir/build.make vrep_ros_interface/CMakeFiles/pcl_msgs_generate_messages_lisp.dir/build
-.PHONY : pcl_msgs_generate_messages_lisp/fast
-
-# Convenience name for target.
 vrep_ros_interface/CMakeFiles/shape_msgs_generate_messages_eus.dir/rule:
 	cd /home/dank-engine/ELEC4010K_ws/build && $(MAKE) -f CMakeFiles/Makefile2 vrep_ros_interface/CMakeFiles/shape_msgs_generate_messages_eus.dir/rule
 .PHONY : vrep_ros_interface/CMakeFiles/shape_msgs_generate_messages_eus.dir/rule
@@ -404,21 +329,6 @@ shape_msgs_generate_messages_eus: vrep_ros_interface/CMakeFiles/shape_msgs_gener
 shape_msgs_generate_messages_eus/fast:
 	cd /home/dank-engine/ELEC4010K_ws/build && $(MAKE) -f vrep_ros_interface/CMakeFiles/shape_msgs_generate_messages_eus.dir/build.make vrep_ros_interface/CMakeFiles/shape_msgs_generate_messages_eus.dir/build
 .PHONY : shape_msgs_generate_messages_eus/fast
-
-# Convenience name for target.
-vrep_ros_interface/CMakeFiles/map_msgs_generate_messages_nodejs.dir/rule:
-	cd /home/dank-engine/ELEC4010K_ws/build && $(MAKE) -f CMakeFiles/Makefile2 vrep_ros_interface/CMakeFiles/map_msgs_generate_messages_nodejs.dir/rule
-.PHONY : vrep_ros_interface/CMakeFiles/map_msgs_generate_messages_nodejs.dir/rule
-
-# Convenience name for target.
-map_msgs_generate_messages_nodejs: vrep_ros_interface/CMakeFiles/map_msgs_generate_messages_nodejs.dir/rule
-
-.PHONY : map_msgs_generate_messages_nodejs
-
-# fast build rule for target.
-map_msgs_generate_messages_nodejs/fast:
-	cd /home/dank-engine/ELEC4010K_ws/build && $(MAKE) -f vrep_ros_interface/CMakeFiles/map_msgs_generate_messages_nodejs.dir/build.make vrep_ros_interface/CMakeFiles/map_msgs_generate_messages_nodejs.dir/build
-.PHONY : map_msgs_generate_messages_nodejs/fast
 
 # Convenience name for target.
 vrep_ros_interface/CMakeFiles/shape_msgs_generate_messages_lisp.dir/rule:
@@ -479,6 +389,21 @@ shape_msgs_generate_messages_py: vrep_ros_interface/CMakeFiles/shape_msgs_genera
 shape_msgs_generate_messages_py/fast:
 	cd /home/dank-engine/ELEC4010K_ws/build && $(MAKE) -f vrep_ros_interface/CMakeFiles/shape_msgs_generate_messages_py.dir/build.make vrep_ros_interface/CMakeFiles/shape_msgs_generate_messages_py.dir/build
 .PHONY : shape_msgs_generate_messages_py/fast
+
+# Convenience name for target.
+vrep_ros_interface/CMakeFiles/diagnostic_msgs_generate_messages_py.dir/rule:
+	cd /home/dank-engine/ELEC4010K_ws/build && $(MAKE) -f CMakeFiles/Makefile2 vrep_ros_interface/CMakeFiles/diagnostic_msgs_generate_messages_py.dir/rule
+.PHONY : vrep_ros_interface/CMakeFiles/diagnostic_msgs_generate_messages_py.dir/rule
+
+# Convenience name for target.
+diagnostic_msgs_generate_messages_py: vrep_ros_interface/CMakeFiles/diagnostic_msgs_generate_messages_py.dir/rule
+
+.PHONY : diagnostic_msgs_generate_messages_py
+
+# fast build rule for target.
+diagnostic_msgs_generate_messages_py/fast:
+	cd /home/dank-engine/ELEC4010K_ws/build && $(MAKE) -f vrep_ros_interface/CMakeFiles/diagnostic_msgs_generate_messages_py.dir/build.make vrep_ros_interface/CMakeFiles/diagnostic_msgs_generate_messages_py.dir/build
+.PHONY : diagnostic_msgs_generate_messages_py/fast
 
 __/generated/ros_msg_io.o: __/generated/ros_msg_io.cpp.o
 
@@ -648,34 +573,29 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... install"
-	@echo "... rebuild_cache"
-	@echo "... edit_cache"
-	@echo "... install/local"
-	@echo "... map_msgs_generate_messages_lisp"
-	@echo "... map_msgs_generate_messages_eus"
-	@echo "... map_msgs_generate_messages_cpp"
-	@echo "... pcl_msgs_generate_messages_nodejs"
-	@echo "... test"
-	@echo "... diagnostic_msgs_generate_messages_py"
-	@echo "... shape_msgs_generate_messages_cpp"
-	@echo "... map_msgs_generate_messages_py"
 	@echo "... pcl_msgs_generate_messages_py"
+	@echo "... pcl_msgs_generate_messages_lisp"
+	@echo "... shape_msgs_generate_messages_cpp"
+	@echo "... pcl_msgs_generate_messages_nodejs"
 	@echo "... diagnostic_msgs_generate_messages_cpp"
+	@echo "... install"
 	@echo "... diagnostic_msgs_generate_messages_eus"
+	@echo "... pcl_msgs_generate_messages_eus"
 	@echo "... list_install_components"
 	@echo "... diagnostic_msgs_generate_messages_lisp"
 	@echo "... install/strip"
 	@echo "... diagnostic_msgs_generate_messages_nodejs"
 	@echo "... v_repExtRosInterface"
-	@echo "... pcl_msgs_generate_messages_eus"
-	@echo "... pcl_msgs_generate_messages_lisp"
 	@echo "... shape_msgs_generate_messages_eus"
-	@echo "... map_msgs_generate_messages_nodejs"
 	@echo "... shape_msgs_generate_messages_lisp"
 	@echo "... pcl_msgs_generate_messages_cpp"
 	@echo "... shape_msgs_generate_messages_nodejs"
 	@echo "... shape_msgs_generate_messages_py"
+	@echo "... install/local"
+	@echo "... diagnostic_msgs_generate_messages_py"
+	@echo "... test"
+	@echo "... edit_cache"
+	@echo "... rebuild_cache"
 	@echo "... __/generated/ros_msg_io.o"
 	@echo "... __/generated/ros_msg_io.i"
 	@echo "... __/generated/ros_msg_io.s"

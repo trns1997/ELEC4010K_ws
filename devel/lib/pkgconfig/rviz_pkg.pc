@@ -1,0 +1,8 @@
+prefix=/home/dank-engine/ELEC4010K_ws/devel
+
+Name: rviz_pkg
+Description: Description of rviz_pkg
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/dank-engine/ELEC4010K_ws/devel/lib 
+Requires: 

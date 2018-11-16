@@ -70,7 +70,7 @@ output="screen"/>-->
 output="screen"/>
 
 <!-- RVIZ NODE -->
-<node pkg="rviz" type="rviz" name="rviz" 
+<node pkg="rviz" type="rviz" name="rviz" args="-d $(find rviz_pkg)/rviz_config.rviz"
 output="screen"/>
 
 </launch>

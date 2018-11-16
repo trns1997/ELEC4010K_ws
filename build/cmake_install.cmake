@@ -137,6 +137,7 @@ if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   include("/home/dank-engine/ELEC4010K_ws/build/hector_slam/hector_map_server/cmake_install.cmake")
   include("/home/dank-engine/ELEC4010K_ws/build/hector_slam/hector_trajectory_server/cmake_install.cmake")
   include("/home/dank-engine/ELEC4010K_ws/build/hector_slam/hector_mapping/cmake_install.cmake")
+  include("/home/dank-engine/ELEC4010K_ws/build/rviz_pkg/cmake_install.cmake")
   include("/home/dank-engine/ELEC4010K_ws/build/vision/cmake_install.cmake")
   include("/home/dank-engine/ELEC4010K_ws/build/vrep_ros_interface/cmake_install.cmake")
 
