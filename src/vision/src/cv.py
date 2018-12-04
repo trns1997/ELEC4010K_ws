@@ -105,8 +105,8 @@ def compare(input_im, temp):
 
             img3 = cv2.drawMatchesKnn(img1, kp1, input_im, kp2, matches, None, **draw_params)
 
-            cv2.imshow('look', img3)
-            cv2.waitKey(1)
+            # cv2.imshow('look', img3)
+            # cv2.waitKey(1)
 
         except cv2.error as e:
             continue
