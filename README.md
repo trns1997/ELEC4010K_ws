@@ -1,11 +1,11 @@
 # ELEC4010K_ws
 ```
- roscore
+roscore
 ```
- launch VREP and load the environment
+launch VREP and load the environment
 ```
 cd PATH_TO_CATKIN_WS/src
 ```
 ```
- roslaunch launch/final.launch
+roslaunch launch/final.launch
 ```
