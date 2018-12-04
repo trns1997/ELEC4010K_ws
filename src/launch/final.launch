@@ -69,6 +69,10 @@ output="screen"/>-->
 <node pkg="teleop_twist_keyboard" type="teleop_twist_keyboard.py" name="teleop_twist_keyboard" 
 output="screen"/>
 
+<!-- PATH_TRACKING NODE -->
+<node pkg="hector_trajectory_server" type="hector_trajectory_server" name="hector_trajectory_server" 
+output="screen"/>
+
 <!-- RVIZ NODE -->
 <node pkg="rviz" type="rviz" name="rviz" args="-d $(find rviz_pkg)/rviz_config.rviz"
 output="screen"/>

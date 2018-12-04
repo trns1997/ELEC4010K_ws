@@ -23,12 +23,12 @@ from visualization_msgs.msg import Marker
 bridge = CvBridge()
 sift = cv2.xfeatures2d.SIFT_create()
 template = []
-names = ["No image", "Obama", "Avril", "Fuckboi_Chinese", "Levi", "White_Fgt"]
-template.append(cv2.imread('/home/dank-engine/ELEC4010K_ws/src/obama.png', 0))
-template.append(cv2.imread('/home/dank-engine/ELEC4010K_ws/src/avril.png', 0))
-template.append(cv2.imread('/home/dank-engine/ELEC4010K_ws/src/fuckboii_chinese.png', 0))
-template.append(cv2.imread('/home/dank-engine/ELEC4010K_ws/src/levi.png', 0))
-template.append(cv2.imread('/home/dank-engine/ELEC4010K_ws/src/white_fgt.png', 0))
+names = ["No image", "Obama", "Avril", "F**kboi_chinese", "Levi", "White_Fgt"]
+template.append(cv2.cvtColor(cv2.imread('/home/dank-engine/ELEC4010K_ws/src/media/obama.png'), cv2.COLOR_BGR2GRAY))
+template.append(cv2.cvtColor(cv2.imread('/home/dank-engine/ELEC4010K_ws/src/media/avril_bet.png'), cv2.COLOR_BGR2GRAY))
+template.append(cv2.cvtColor(cv2.imread('/home/dank-engine/ELEC4010K_ws/src/media/fuckboii_chinese.png'), cv2.COLOR_BGR2GRAY))
+template.append(cv2.cvtColor(cv2.imread('/home/dank-engine/ELEC4010K_ws/src/media/levi.png'), cv2.COLOR_BGR2GRAY))
+template.append(cv2.cvtColor(cv2.imread('/home/dank-engine/ELEC4010K_ws/src/media/white_fgt.png'), cv2.COLOR_BGR2GRAY))
 pub = rospy.Publisher('visualization_marker', Marker, queue_size=100)
 mark_array = []
 
@@ -55,8 +55,8 @@ def image_callback(msg):
     try:
         # Convert your ROS Image message to OpenCV2
         cv2_img = bridge.imgmsg_to_cv2(msg, "bgr8")
-    # cv2.imshow('look', cv2_img)
-    # cv2.waitKey(1)
+        # cv2.imshow('look', cv2_img)
+        # cv2.waitKey(1)
     except CvBridgeError, e:
         print(e)
 
@@ -65,11 +65,12 @@ def image_callback(msg):
     _, thresh = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU)
     _, contours, _ = cv2.findContours(thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
 
-    val_sim = [115]
+    val_sim = [130]
     compare(cv2_img, template)
     name = names[val_sim.index(max(val_sim))]
+    print val_sim
 
-    if name != "No image" and len(contours) != 0:
+    if (name != "No image") and len(contours) != 0:
         rviz_mark(contours, name)
 
 
@@ -96,7 +97,7 @@ def compare(input_im, temp):
                     # matchesMask[i]=[1,0]
                     cnt = cnt + 1
             val_sim.append(cnt)
-            print(cnt)
+            # print(cnt)
 
         except cv2.error as e:
             continue
