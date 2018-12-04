@@ -57,14 +57,14 @@ def image_callback(msg):
                 # computes centre
                 center = (int(M["m10"] / M["m00"]), int(M["m01"] / M["m00"]))
                 cv2.circle(median_yellow, center, 5, (0, 0, 255), -1)
-		out_ang = pid_ang(x)
-		out_spd = pid_spd(radius)
-		print(str(out_ang) + " " + str(out_spd))
-                speed = out_spd #(-0.0072 * radius) + 1.4545
-		ang = -out_ang #(0.00390625 * x) - 1
-		pos.linear.x = speed
-		pos.angular.z = ang
-            pub.publish(pos)
+                out_ang = pid_ang(x)
+                out_spd = pid_spd(radius)
+                print(str(out_ang) + " " + str(out_spd))
+                speed = out_spd  # (-0.0072 * radius) + 1.4545
+                ang = -out_ang  # (0.00390625 * x) - 1
+                pos.linear.x = speed
+                pos.angular.z = ang
+                pub.publish(pos)
 
     # cv2.imshow('mask',mask)
     # cv2.imshow('Result', median_yellow)

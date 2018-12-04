@@ -79,8 +79,8 @@ def compare(input_im, temp):
         cnt = 0
         img1 = temp[i]  # queryImage
         # find the keypoints and descriptors with SIFT
-        _, des1 = sift.detectAndCompute(img1, None)
-        _, des2 = sift.detectAndCompute(input_im, None)
+        kp1, des1 = sift.detectAndCompute(img1, None)
+        kp2, des2 = sift.detectAndCompute(input_im, None)
         # FLANN parameters
         FLANN_INDEX_KDTREE = 0
         index_params = dict(algorithm=FLANN_INDEX_KDTREE, trees=5)
@@ -90,14 +90,23 @@ def compare(input_im, temp):
         try:
             matches = flann.knnMatch(des1, des2, k=2)
             # Need to draw only good matches, so create a mask
-            # matchesMask = [[0,0] for i in xrange(len(matches))]
+            matchesMask = [[0,0] for i in xrange(len(matches))]
             # ratio test as per Lowe's paper
             for i, (m, n) in enumerate(matches):
                 if m.distance < 0.7 * n.distance:
-                    # matchesMask[i]=[1,0]
+                    matchesMask[i]=[1,0]
                     cnt = cnt + 1
             val_sim.append(cnt)
             # print(cnt)
+            draw_params = dict(matchColor=(0, 255, 0),
+                               singlePointColor=(255, 0, 0),
+                               matchesMask=matchesMask,
+                               flags=0)
+
+            img3 = cv2.drawMatchesKnn(img1, kp1, input_im, kp2, matches, None, **draw_params)
+
+            cv2.imshow('look', img3)
+            cv2.waitKey(1)
 
         except cv2.error as e:
             continue
@@ -109,7 +118,7 @@ def rviz_mark(contours, name):
 
     x, y, w, h = cv2.boundingRect(c)
     # draw the book contour (in green)
-    # cv2.rectangle(cv2_img,(x,y),(x+w,y+h),(0,255,0),2)
+    cv2.rectangle(cv2_img,(x,y),(x+w,y+h),(0,255,0),2)
 
     im_pix_h = h / 2
     im_theta = ((math.pi / 8) * h) / (512)
@@ -124,6 +133,10 @@ def rviz_mark(contours, name):
 
     print(name + " " + str(dist_x_real))
     pub.publish(mark_array[index])
+
+    # cv2.imshow('look', cv2_img)
+    # cv2.waitKey(1)
+    
 
 
 def main():
